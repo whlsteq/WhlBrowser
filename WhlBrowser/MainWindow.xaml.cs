@@ -21,6 +21,7 @@ namespace WhlBrowser
     public partial class MainWindow : Window
     {
         String url;
+        int count = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -35,5 +36,21 @@ namespace WhlBrowser
                 browser.Address = url;
             }
         }
+
+        private void show(object sender, KeyEventArgs e)
+        {
+            if (count==0 && e.Key==Key.LeftCtrl && e.Key==Key.LeftShift && e.Key==Key.N)
+            {
+                this.IsEnabled = false;
+                count++;
+            }
+            else if (count==1 && e.Key == Key.LeftCtrl && e.Key == Key.LeftShift && e.Key == Key.N)
+            {
+                this.IsEnabled=true;
+                count=0;
+
+            }
+        }
+
     }
 }

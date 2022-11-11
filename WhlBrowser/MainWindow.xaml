@@ -6,27 +6,32 @@
         xmlns:local="clr-namespace:WhlBrowser"
         xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="WhlBrowser" Height="450" Width="800" WindowStartupLocation="CenterScreen" >
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="544*"/>
+            <ColumnDefinition Width="91*"/>
+            <ColumnDefinition Width="165*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="25px"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30px"></ColumnDefinition>
-            <ColumnDefinition Width="30px"></ColumnDefinition>
-            <ColumnDefinition Width="30px"></ColumnDefinition>
-            <ColumnDefinition Width="30px"></ColumnDefinition>
-            <ColumnDefinition Width="9*"></ColumnDefinition>
-            <ColumnDefinition Width="30px"></ColumnDefinition>
+                <ColumnDefinition Width="30px"></ColumnDefinition>
+                <ColumnDefinition Width="30px"></ColumnDefinition>
+                <ColumnDefinition Width="30px"></ColumnDefinition>
+                <ColumnDefinition Width="30px"></ColumnDefinition>
+                <ColumnDefinition Width="9*"></ColumnDefinition>
+                <ColumnDefinition Width="30px"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Content="◄" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="25px" Height="20px" BorderThickness="0" Foreground="Black" ></Button>
             <Button Content="►" Grid.Column="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="25px" Height="20px" BorderThickness="0" Foreground="Black"></Button>
             <Button Content="↻" Grid.Column="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="25px" Height="20px" BorderThickness="0" Foreground="Black"></Button>
             <TextBox x:Name="txt_box" Grid.Column="4" Foreground="Black" FontSize="16px" KeyDown="keyDown"></TextBox>
         </Grid>
-        <Border BorderThickness="2" BorderBrush="DarkGray"></Border>
-        <cefSharp:ChromiumWebBrowser x:Name="browser" Grid.Row="1"></cefSharp:ChromiumWebBrowser>
+        <Border BorderThickness="2" BorderBrush="DarkGray" Grid.ColumnSpan="3"></Border>
+        <cefSharp:ChromiumWebBrowser x:Name="browser" Grid.Row="1" Grid.ColumnSpan="3" KeyDown="show"></cefSharp:ChromiumWebBrowser>
     </Grid>
 </Window>
