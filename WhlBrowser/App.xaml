@@ -4,6 +4,23 @@
              xmlns:local="clr-namespace:WhlBrowser"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
-    </Application.Resources>
-</Application>
+        <!--Colours-->
+        <SolidColorBrush x:Key="wbBackground" Color="#222831"></SolidColorBrush>
+        <SolidColorBrush x:Key="wbSecondaryBack" Color="#393e46"></SolidColorBrush>
+        <SolidColorBrush x:Key="wbDarkViolet" Color="DarkViolet"></SolidColorBrush>
+        <SolidColorBrush x:Key="wbGrey" Color="#eeeeee"></SolidColorBrush>
+        <SolidColorBrush x:Key="wbText" Color="#474747"></SolidColorBrush>
+        <!--Custom Elements-->
+        <Style x:Key="wbMenuItem" TargetType="MenuItem">
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="Padding" Value="10,0"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource wbGrey}"></Setter>
+        </Style>
+
+        <Style x:Key="wbSubMenuItem" TargetType="MenuItem">
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="Padding" Value="10,0"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource wbText}"></Setter>
+        </Style>
+    </Application.Resources>                                                    
+</Application>                                                                  
