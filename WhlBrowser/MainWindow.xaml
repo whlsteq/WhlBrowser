@@ -14,7 +14,7 @@
           <local:Shortcut Executed="newTabShortCut"/>
         </KeyBinding.Command>
       </KeyBinding>
-      <KeyBinding Modifiers="Control" Key="S">
+      <KeyBinding Modifiers="Control" Key="W">
         <KeyBinding.Command>
           <local:Shortcut Executed="closeTabShortCut"/>
         </KeyBinding.Command>
