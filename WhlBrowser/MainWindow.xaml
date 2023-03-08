@@ -8,6 +8,18 @@
         mc:Ignorable="d"
         
         Title="WhlBrowser" Height="450" Width="800" WindowStartupLocation="CenterScreen" Background="{DynamicResource wbBackground}" KeyDown="window_KeyDown">
+    <Window.InputBindings>
+      <KeyBinding Modifiers="Control" Key="N">
+        <KeyBinding.Command>
+          <local:Shortcut Executed="newTabShortCut"/>
+        </KeyBinding.Command>
+      </KeyBinding>
+      <KeyBinding Modifiers="Control" Key="S">
+        <KeyBinding.Command>
+          <local:Shortcut Executed="closeTabShortCut"/>
+        </KeyBinding.Command>
+      </KeyBinding>
+    </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition x:Name="menuBarRow" Height="0"></RowDefinition>
@@ -49,9 +61,6 @@
                         <Image Source="/resources/settings.ico" VerticalAlignment="Center" Height="32" Width="18" />
                     </MenuItem.Icon>
                     <MenuItem x:Name="newTabMenuItem" Header="New Tab" Click="newTabMenuItem_Click" InputGestureText="Ctrl+N">
-                        <MenuItem.InputBindings>
-                            <KeyBinding Key="N" Modifiers="Ctrl"/>
-                        </MenuItem.InputBindings>
                     </MenuItem>
                     <MenuItem x:Name="closeTabMenuItem" Header="Close Tab" Click="closeTabMenuItem_Click" InputGestureText="Ctrl+W"/>
                     <Separator/>

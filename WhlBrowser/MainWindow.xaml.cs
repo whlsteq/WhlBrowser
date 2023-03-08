@@ -23,11 +23,22 @@ namespace WhlBrowser
             dataTransfer.CreateXmlFile();
 
         }
-        
+        private void newTabShortCut(object sender, object e)
+        {
+            newTab();
+        }
+
+        private void closeTabShortCut(object sender, object e)
+        {
+            if (tabCount > 0 && currentTabItem != null)
+            {
+                tabControl.Items.Remove(currentTabItem);
+            }
+        }
+
         private void newTabMenuItem_Click(object sender, RoutedEventArgs e)
         {
             newTab();
-            
         }
         private void newTab()
         {
@@ -163,5 +174,23 @@ namespace WhlBrowser
             //    newTab();
             //}
         }
+    }
+
+    class Shortcut : ICommand
+    {
+        public event EventHandler<object> Executed;
+
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object parameter)
+        {
+            if (Executed != null)
+                Executed(this, parameter);
+        }
+
+        public event EventHandler CanExecuteChanged;
     }
 }
