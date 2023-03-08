@@ -1,6 +1,7 @@
 ﻿using CefSharp;
 using CefSharp.Wpf;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -115,30 +116,24 @@ namespace WhlBrowser
         }
         private void Search()
         {
-            if (currentBrowserShowing != null && AddressBar.Text !=String.Empty &&AddressBar.Text.Contains("www.")==false && AddressBar.Text.Contains(".com")==false && AddressBar.Text.Contains("https://")==false && AddressBar.Text.Contains("http://") == false)
-            {
-                currentBrowserShowing.Address = "https://www.google.com/search?q=" + AddressBar.Text;
-            }
-            else if (currentBrowserShowing != null && AddressBar.Text != String.Empty && AddressBar.Text.Contains(".com") == false && AddressBar.Text.Contains("www.") == true && AddressBar.Text.Contains("https://") == false && AddressBar.Text.Contains("http://") == false)
-            {
-                currentBrowserShowing.Address = "https://www.google.com/search?q=" + AddressBar.Text;
-            }
-            else if (currentBrowserShowing != null && AddressBar.Text != String.Empty && AddressBar.Text.Contains(".com") == true && AddressBar.Text.Contains("www.")==false && AddressBar.Text.Contains("https://") == false && AddressBar.Text.Contains("http://") == false)
-            {
-                currentBrowserShowing.Address = "https://www."+ AddressBar.Text;
-            }
-            else if (currentBrowserShowing != null && AddressBar.Text != String.Empty && AddressBar.Text.Contains(".com") == true && AddressBar.Text.Contains("www.") == true && AddressBar.Text.Contains("https://") == false && AddressBar.Text.Contains("http://") == false)
-            {
-                currentBrowserShowing.Address = "https://" + AddressBar.Text;
-            }
-            else if (currentBrowserShowing != null && AddressBar.Text != String.Empty && AddressBar.Text.Contains(".com") == true && AddressBar.Text.Contains("www.") == true && AddressBar.Text.Contains("https://") == true && AddressBar.Text.Contains("http://") == false)
+            if (isValidDomain(AddressBar.Text))
             {
                 currentBrowserShowing.Address = AddressBar.Text;
             }
-            else if (currentBrowserShowing != null && AddressBar.Text != String.Empty && AddressBar.Text.Contains(".com") == true && AddressBar.Text.Contains("www.") == true && AddressBar.Text.Contains("https://") == false && AddressBar.Text.Contains("http://") == true)
+            else
             {
-                currentBrowserShowing.Address = AddressBar.Text;
+                currentBrowserShowing.Address = "https://www.google.com/search?q=" + AddressBar.Text;
             }
+        }
+
+        public static bool isValidDomain(string str)
+        {
+            string strRegex = @"^((?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,6}$";
+            Regex re = new Regex(strRegex);
+            if (re.IsMatch(str))
+                return (true);
+            else
+                return (false);
         }
 
         private void SettingsMenuItem_Click(object sender, RoutedEventArgs e)
@@ -156,6 +151,8 @@ namespace WhlBrowser
 
         private void defaultBrowser_AddressChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            /*
+             * Hata çıkarmaması için yorum satırına alındı.
             var sndr = sender as ChromiumWebBrowser;
             AddressBar.Text = sndr.Address;
             string removeHttp = sndr.Address.Replace("http://www.", "");
@@ -165,6 +162,7 @@ namespace WhlBrowser
             tItem.Header = host;
 
             AddressBar.Text = sndr.Address;
+            */
         }
 
         private void window_KeyDown(object sender, KeyEventArgs e)
