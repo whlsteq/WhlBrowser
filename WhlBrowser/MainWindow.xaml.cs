@@ -57,6 +57,8 @@ namespace WhlBrowser
             currentTabItem = tabItem;
             currentBrowserShowing = browser;
             browser.Loaded += LoadedPage;
+            browser.TitleChanged += defaultBrowser_TitleChanged;
+            browser.AddressChanged += defaultBrowser_AddressChanged;
         }
         private void LoadedPage(object sender, RoutedEventArgs e)
         {
@@ -151,18 +153,8 @@ namespace WhlBrowser
 
         private void defaultBrowser_AddressChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            /*
-             * Hata çıkarmaması için yorum satırına alındı.
             var sndr = sender as ChromiumWebBrowser;
             AddressBar.Text = sndr.Address;
-            string removeHttp = sndr.Address.Replace("http://www.", "");
-            string host = removeHttp.Replace("https://www.", "");
-            int pos = host.IndexOf(".com");
-            host = host.Substring(0, pos);
-            tItem.Header = host;
-
-            AddressBar.Text = sndr.Address;
-            */
         }
 
         private void window_KeyDown(object sender, KeyEventArgs e)
@@ -171,6 +163,11 @@ namespace WhlBrowser
             //{
             //    newTab();
             //}
+        }
+        private void defaultBrowser_TitleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var chromium = sender as ChromiumWebBrowser;
+            currentTabItem.Header = chromium.Title;
         }
     }
 
