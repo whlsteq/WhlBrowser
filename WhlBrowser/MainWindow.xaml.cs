@@ -130,12 +130,22 @@ namespace WhlBrowser
 
         public static bool isValidDomain(string str)
         {
-            string strRegex = @"^((?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,6}$";
+            string strRegex = "^(?:https?:\\/\\/)(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$";
+            string SecondRegex = @"^((?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,6}$";
             Regex re = new Regex(strRegex);
+            Regex SecondRe = new Regex(SecondRegex);
             if (re.IsMatch(str))
+            {
                 return (true);
+            }
+            else if(SecondRe.IsMatch(str))
+            {
+                return (true);
+            }
             else
+            {
                 return (false);
+            }
         }
 
         private void SettingsMenuItem_Click(object sender, RoutedEventArgs e)
